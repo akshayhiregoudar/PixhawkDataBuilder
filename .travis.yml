@@ -1,14 +1,35 @@
 # Documentation: http://docs.travis-ci.com/user/languages/julia/
 language: julia
 os:
-  - linux
-  - osx
+- linux
 julia:
-  - 1.0
-  - nightly
+- 1.0
 notifications:
   email: false
-jobs:
-  allow_failures:
-    - julia: nightly
-  fast_finish: true
+git:
+  depth: 99999999
+cache:
+  timeout: 1000
+  directories:
+  - downloads
+env:
+  global:
+  - BINARYBUILDER_DOWNLOADS_CACHE=downloads
+  - BINARYBUILDER_AUTOMATIC_APPLE=true
+sudo: required
+before_script:
+  - julia -e 'using Pkg; pkg"add BinaryProvider"; pkg"add BinaryBuilder"; Pkg.build()'
+script:
+  - julia build_tarballs.jl
+deploy:
+  provider: releases
+  api_key:
+      # Note; this api_key is only valid for stevengj/xsumBuilder; you need
+      # to make your own: https://docs.travis-ci.com/user/deployment/releases/
+    secure: xCwkYqtkDw1i0goJinv2zoS76806P7C9dnBEFf7h+XIA0/MSWuzUF8Zjw5HfWSQkhPrRh5G9N/0+UKOBe6K+kNnbVwjaPQ3kNrdDy0IlGIWMjrcADex9n9/caiZ6THQ52DkhoXAuekWQ4j4o4kmbtkr7rrdZggKhxg18XvHUXJhZlnKfOE1gFRnPDezDDGQe6dUoWbag7I/5BHHgopzpAaay6gpD7OKb/KXXQ4l5/rxU0H6uZKEoKJg8T1Awrcb+GvOmhx+hsCgP4B6xZSKT+OHNojHox8n2g5vxues782p39/J6FAk/owOKgO1k3IIvN+bsayR063fqKnbzFQACapoBeWO4Dxwc1Qa5abWRDhMrbGkXPYxYyEbI5G8GxUZHSziAReMIk/CehzsmqWYMVapzGnzJp6lqWDEXie58vSLX5bGe8Ypok2gg+XqGy+n92X1cqzdZzNAo0BMuBEPV3vcLVxHw9f5anQjDeGmMwDzeSLIGbD09SNkSjWZWzpqdTx9VVF9b68L6eQB1NhoFzCsw4XiOa5QFRwVXnS24JNuB7SeJLVia2H8KNX1Y9G37tPA50r2FKXK3+Lo38l5ldGmDjUeh4/ssLIJnfSf4tfk1vV5yCP2/m53d4yWZDsFqvDkWXbep3UV9OQNwYNVG7zGcyaKsQH5osfhD+sXjkxY=
+  file_glob: true
+  file: products/*
+  skip_cleanup: true
+  on:
+    repo: stevengj/xsumBuilder
+    tags: true
