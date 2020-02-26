@@ -26,11 +26,8 @@ make install
 # These are the platforms we will build for by default, unless further
 # platforms are passed in on the command line
 platforms = [
-    Windows(:x86_64, compiler_abi=CompilerABI(:gcc7)),
-    Windows(:x86_64, compiler_abi=CompilerABI(:gcc8)),
     Linux(:x86_64, compiler_abi=CompilerABI(:gcc7)),
     Linux(:x86_64, compiler_abi=CompilerABI(:gcc8)),
-    MacOS()
 ]
 
 # The products that we will ensure are always built
