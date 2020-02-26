@@ -8,10 +8,20 @@ sources = [
 
 # Bash recipe for building across all platforms
 script = raw"""
-cd $WORKSPACE/srcdir/
+cd $WORKSPACE/srcdir
 cd pixhawk_sensor_data
+if [[ "${target}" == *-freebsd* ]] || [[ "${target}" == *-apple-* ]]; then
+    export FC=/opt/${target}/bin/${target}-gfortran
+    export LD=/opt/${target}/bin/${target}-ld
+    export AR=/opt/${target}/bin/${target}-ar
+    export AS=/opt/${target}/bin/${target}-as
+    export NM=/opt/${target}/bin/${target}-nm
+    export OBJDUMP=/opt/${target}/bin/${target}-objdump
+fi
+./configure --prefix=$prefix --host=${target} --disable-python
+make -j${nproc}
+make install
 """
-
 
 # These are the platforms we will build for by default, unless further
 # platforms are passed in on the command line
@@ -33,4 +43,4 @@ dependencies = [
 ]
 
 # Build the tarballs, and possibly a `build.jl` as well.
-build_tarballs(ARGS, "xsum", v"1.0", sources, script, platforms, products, dependencies)
+build_tarballs(ARGS, "PixhawkData", v"1.0", sources, script, platforms, products, dependencies)
