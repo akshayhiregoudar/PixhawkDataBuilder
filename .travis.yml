@@ -31,5 +31,5 @@ deploy:
   file: products/*
   skip_cleanup: true
   on:
-    repo: stevengj/xsumBuilder
+    repo: akshayhiregoudar/PixhawkDataBuilder
     tags: true
