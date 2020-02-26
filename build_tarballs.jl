@@ -3,7 +3,7 @@ using BinaryBuilder
 # Collection of sources required to build PixhawkData
 sources = [
     "https://github.com/akshayhiregoudar/pixhawk_sensor_data/archive/master.tar.gz" =>
-    "13ad216702b9c95b03ac58ba68af0e1c0de0324c1"
+    "37851ea0840609ac9e7dd4c8fcaa3fd6ca474354709520ba105bafe581b9a798"
 ]
 
 # Bash recipe for building across all platforms
