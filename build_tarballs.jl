@@ -4,6 +4,7 @@ using BinaryBuilder
 sources = [
     "https://github.com/akshayhiregoudar/pixhawk_sensor_data.git" =>
     "fe95426aa216dee8b52cc858036ae9a4e6f49bb8"
+]
 
 # Bash recipe for building across all platforms
 script = raw"""
