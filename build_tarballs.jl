@@ -14,7 +14,6 @@ script = raw"""
 cd $WORKSPACE/srcdir/
 cd PixhawkData-1.0.2
 
-make -j${nproc}
 
 """
 
