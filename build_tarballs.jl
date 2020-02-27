@@ -6,7 +6,7 @@ version = v"1.0"
 # Collection of sources required to build PixhawkData
 sources = [
     "https://github.com/akshayhiregoudar/PixhawkData/archive/master.tar.gz" =>
-    "09e4ba02a129c651162600c118eae3b4f8d1490d49f193f961d0962f8d5c8482"
+    "a980534c70c6f86a69a65cae00a43c2194ea5a14b1eba02d19c908fb7d7f9114"
 ]
 
 # Bash recipe for building across all platforms
