@@ -2,17 +2,17 @@ using BinaryBuilder
 
 
 name = "PixhawkData"
-version = v"1.0.1"
+version = v"1.0.2"
 # Collection of sources required to build PixhawkData
 sources = [
     "https://github.com/akshayhiregoudar/pixhawk_sensor_data/archive/v1.0.2.tar.gz" =>
-    "88dacd85a05c690f238212e126efd76b0c8792e79ebaff9690431de6ed6ded7c"
+    "e52c064061d9e35f4808a67f7d516047b015fefa0df2ac017b99bbe9afb03402"
 ]
 
 # Bash recipe for building across all platforms
 script = raw"""
 cd $WORKSPACE/srcdir/
-cd pixhawk_sensor_data-1.0.1/
+cd pixhawk_sensor_data-1.0.2/
 
 git init
 make -j${nproc}
