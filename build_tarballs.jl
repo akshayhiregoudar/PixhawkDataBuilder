@@ -1,5 +1,8 @@
 using BinaryBuilder
 
+
+name = "PixhawkData"
+version = v"1.0.1"
 # Collection of sources required to build PixhawkData
 sources = [
     "https://github.com/akshayhiregoudar/pixhawk_sensor_data/releases/download/v1.0.1/pixhawk_sensor_data-1.0.1.tar.gz" =>
@@ -8,10 +11,11 @@ sources = [
 
 # Bash recipe for building across all platforms
 script = raw"""
-cd $WORKSPACE/srcdir
-cd pixhawk_sensor_data-1.0.1
+cd $WORKSPACE/srcdir/
+cd pixhawk_sensor_data-1.0.1/
 
 make -j${nproc}
+make install
 
 """
 
@@ -32,4 +36,4 @@ dependencies = [
 ]
 
 # Build the tarballs, and possibly a `build.jl` as well.
-build_tarballs(ARGS, "PixhawkData", v"1.0.1", sources, script, platforms, products, dependencies)
+build_tarballs(ARGS, name, version, sources, script, platforms, products, dependencies)
