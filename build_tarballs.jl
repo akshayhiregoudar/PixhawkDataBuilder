@@ -10,15 +10,26 @@ sources = [
 script = raw"""
 cd $WORKSPACE/srcdir
 cd pixhawk_sensor_data-1.0.1
-if [[ "${target}" == *-freebsd* ]] || [[ "${target}" == *-apple-* ]]; then
-    export FC=/opt/${target}/bin/${target}-gfortran
+
+if [[ "${target}" == *-mingw* ]]; then
+    sed -i 's/cross_compiling=no/cross_compiling=yes/' configure
+    ./configure --prefix=$prefix --target=${target} --build=x86_64-w64-mingw32 --enable-silent-rules --enable-shared --enable-obj
+elif [[ "${target}" == *-apple-* ]]; then
+    sed -i 's/cross_compiling=no/cross_compiling=yes/' configure
+    export CC=/opt/${target}/bin/${target}-gcc
+    export CXX=/opt/${target}/bin/${target}-g++
+    ./configure --prefix=$prefix --target=${target} --enable-silent-rules --enable-shared --enable-obj
+else
+    autoreconf -fi
+    sed -i 's/cross_compiling=no/cross_compiling=yes/' configure
+    export CC=/opt/${target}/bin/${target}-gcc
+    export CXX=/opt/${target}/bin/${target}-g++
     export LD=/opt/${target}/bin/${target}-ld
-    export AR=/opt/${target}/bin/${target}-ar
-    export AS=/opt/${target}/bin/${target}-as
-    export NM=/opt/${target}/bin/${target}-nm
-    export OBJDUMP=/opt/${target}/bin/${target}-objdump
+    export LDFLAGS=-L/opt/${target}/${target}/lib64
+    ./configure --prefix=$prefix --target=${target} --enable-silent-rules --enable-shared --enable-obj
 fi
-make -j${nproc}
+make -j${nproc} check
+make install
 """
 
 # These are the platforms we will build for by default, unless further
