@@ -14,6 +14,7 @@ script = raw"""
 cd $WORKSPACE/srcdir/
 cd PixhawkData-master/
 
+git init
 make -j${nproc}
 make install
 
