@@ -2,14 +2,14 @@ using BinaryBuilder
 
 # Collection of sources required to build PixhawkData
 sources = [
-    "https://github.com/akshayhiregoudar/pixhawk_sensor_data/archive/v1.0.tar.gz" =>
-    "006853f5421ce5994aa0382241abd5ef56f45160c745df8674d9bc9d7b4b5b9d"
+    "https://github.com/akshayhiregoudar/pixhawk_sensor_data/archive/v1.0.1.tar.gz" =>
+    "81e8fc1398e6ce1cf1b59f46b2f5ab9a802a5edd934f5063d673a32306781018"
 ]
 
 # Bash recipe for building across all platforms
 script = raw"""
 cd $WORKSPACE/srcdir
-cd pixhawk_sensor_data-1.0
+cd pixhawk_sensor_data-1.0.1
 if [[ "${target}" == *-freebsd* ]] || [[ "${target}" == *-apple-* ]]; then
     export FC=/opt/${target}/bin/${target}-gfortran
     export LD=/opt/${target}/bin/${target}-ld
@@ -38,4 +38,4 @@ dependencies = [
 ]
 
 # Build the tarballs, and possibly a `build.jl` as well.
-build_tarballs(ARGS, "PixhawkData", v"1.0", sources, script, platforms, products, dependencies)
+build_tarballs(ARGS, "PixhawkData", v"1.0.1", sources, script, platforms, products, dependencies)
