@@ -11,17 +11,8 @@ script = raw"""
 cd $WORKSPACE/srcdir
 cd pixhawk_sensor_data-1.0.1
 
-if [[ "${target}" == *-freebsd* ]] || [[ "${target}" == *-apple-* ]]; then
-    export FC=/opt/${target}/bin/${target}-gfortran
-    export LD=/opt/${target}/bin/${target}-ld
-    export AR=/opt/${target}/bin/${target}-ar
-    export AS=/opt/${target}/bin/${target}-as
-    export NM=/opt/${target}/bin/${target}-nm
-    export OBJDUMP=/opt/${target}/bin/${target}-objdump
-fi
-
 make -j${nproc}
-make install
+
 """
 
 # These are the platforms we will build for by default, unless further
