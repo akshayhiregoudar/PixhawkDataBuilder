@@ -16,7 +16,6 @@ cd PixhawkData-master/
 
 git init
 make -j${nproc}
-make install
 
 """
 
