@@ -19,7 +19,7 @@ if [[ "${target}" == *-freebsd* ]] || [[ "${target}" == *-apple-* ]]; then
     export NM=/opt/${target}/bin/${target}-nm
     export OBJDUMP=/opt/${target}/bin/${target}-objdump
 fi
-./configure --prefix=$prefix --host=${target} --disable-python
+
 make -j${nproc}
 make install
 """
