@@ -5,7 +5,7 @@ name = "PixhawkData"
 version = v"1.0.2"
 # Collection of sources required to build PixhawkData
 sources = [
-    "https://github.com/akshayhiregoudar/PixhawkData.git" =>
+    "git://github.com/akshayhiregoudar/PixhawkData.git" =>
     "e57a681e234f8feba7cd4eaa006112b74ba593e222fdc37361e8002d7198aeb1"
 ]
 
