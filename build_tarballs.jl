@@ -14,7 +14,7 @@ script = raw"""
 cd $WORKSPACE/srcdir/
 cd PixhawkData-1.0.2
 
-
+make
 """
 
 # These are the platforms we will build for by default, unless further
