@@ -19,11 +19,7 @@ make
 
 # These are the platforms we will build for by default, unless further
 # platforms are passed in on the command line
-platforms = [
-    Linux(:x86_64, libc=:glibc),
-    MacOS(:x86_64),
-    Windows(:x86_64)
-]
+platforms = supported_platforms()
 
 # The products that we will ensure are always built
 products(prefix) = [
